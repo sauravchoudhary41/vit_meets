@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>VIT-Meets</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename="styles/styles.css")}}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js" defer></script>
+    <script src="{{ url_for('static', filename="scripts/main.js")}}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename="styles/my-calendar.css")}}">
+</head>
+
+<body>
+    <div id="vt-form-container">
+        <form id="vt-login-form">
+            <h4>VIT MEETS</h4>
+            <input type="text" placeholder="email" id="email" class="vt-input" required>
+            <br>
+            <input type="password" placeholder="password" id="password" class="vt-input" required>
+            <br>
+            <span class="vt-link" onclick="register()"> New user ? Click here to register</span>
+            <br>
+            <button class="vt-submit-btn" type="button" onclick="sendLogin()">Login</button>
+        </form>
+        <form id="vt-register-form">
+            <h4>VIT MEETS</h4>
+            <input type="text" placeholder="name" id="reg-name" class="vt-input" required>
+            <br>
+            <input type="text" placeholder="email" id="reg-email" class="vt-input" required>
+            <br>
+            <input type="password" placeholder="password" id="reg-orig-password" class="vt-input" oninput="validatepassword()" required>
+            <br>
+            <input type="password" placeholder="confirm password" id="reg-conf-password" class="vt-input" oninput="validatepassword()" required>
+            <br>
+            <span class="vt-link" onclick="login()"> Already registered ? Click here to login</span>
+            <br>
+            <button class="vt-submit-btn" type="button" id="register-btn" onclick="sendRegister()">Register</button>
+            <br>
+            <span id="pwd-error"></span>
+        </form>
+    </div>
+
+    <div id="container-main">
+		<div id="calendar-toggle-row">
+			<div class="cal-tab" id="my-calendar">
+				<p>My Calendar</p>
+			</div>
+			<a href="others-calendar.html">
+				<div class="cal-tab" id="others-calendar">
+					<p>Others Calendar</p>
+				</div>
+			</a>
+        </div>
+        <br>
+		<div id="calendar-container">
+        </div>
+        <br>
+		<div id="calendar-footer-row">
+			<div class="cal-send" id="my-calendar">
+				<button onclick="sendAvailabilitySlots()"> Update Availabillity </button>
+			</div>
+        </div>
+        <br>
+		<div id="hints">
+			<div id="blank" class="show-hints">
+				<span>No selection made</span>
+			</div>
+			<div id="available" class="show-hints">
+				<span>Slots free for Meeting</span>
+			</div>
+			<div id="booked" class="show-hints">
+				<span>Slots booked for meeting</span>
+			</div>
+		</div>
+    </div>
+    
+    <div id="container-main-others">
+        <div id="calendar-toggle-row-others">
+            <a href="/my-calendar.html">
+                <div class="cal-tab" id="my-calendar">
+                    <p>My Calendar</p>
+                </div>
+            </a>
+            <div class="cal-tab" id="others-calendar">
+                <p>Others Calendar</p>
+            </div>
+        </div>
+        <div id="other-container">
+            <div id="user-search-row">
+                <div id="search-bar">
+                    <input type="text" placeholder="search" oninput="searchUsers()">
+                    <div id="user-list">
+                    </div>
+                </div>
+            </div>
+            <div id="calendar-container-others">
+            </div>
+        </div>
+        <div id="calendar-footer-row-others">
+            <div class="cal-send" id="my-calendar">
+                <button onclick="sendAvailabilitySlots()"> Book Slots </button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

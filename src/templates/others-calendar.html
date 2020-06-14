@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>VIT-Meets</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename="styles/others-calendar.css")}}">
+    <script src="{{ url_for('static', filename="scripts/others-calendar.js")}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js" defer></script>
+</head>
+
+<body>
+    <div id="container-main-others">
+        <div id="calendar-toggle-row-others">
+            <a href="/my-calendar.html">
+                <div class="cal-tab" id="my-calendar">
+                    <p>My Calendar</p>
+                </div>
+            </a>
+            <div class="cal-tab" id="others-calendar">
+                <p>Others Calendar</p>
+            </div>
+        </div>
+        <div id="other-container">
+            <div id="user-search-row">
+                <div id="search-bar">
+                    <input type="text" placeholder="search" oninput="searchUsers()">
+                    <div id="user-list">
+                    </div>
+                </div>
+            </div>
+            <div id="calendar-container-others">
+            </div>
+        </div>
+        <div id="calendar-footer-row-others">
+            <div class="cal-send" id="my-calendar">
+                <button onclick="sendAvailabilitySlots()"> Book Slots </button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
