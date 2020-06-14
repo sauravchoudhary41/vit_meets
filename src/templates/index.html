@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename="styles/styles.css")}}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js" defer></script>
     <script src="{{ url_for('static', filename="scripts/main.js")}}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename="styles/others-calendar.css")}}">
     <link rel="stylesheet" href="{{ url_for('static', filename="styles/my-calendar.css")}}">
 </head>
 
@@ -44,11 +45,9 @@
 			<div class="cal-tab" id="my-calendar">
 				<p>My Calendar</p>
 			</div>
-			<a href="others-calendar.html">
-				<div class="cal-tab" id="others-calendar">
-					<p>Others Calendar</p>
-				</div>
-			</a>
+			<div onclick="showOtherCalendar()" class="cal-tab" id="others-calendar">
+				<p>Others Calendar</p>
+			</div>
         </div>
         <br>
 		<div id="calendar-container">
@@ -75,11 +74,9 @@
     
     <div id="container-main-others">
         <div id="calendar-toggle-row-others">
-            <a href="/my-calendar.html">
-                <div class="cal-tab" id="my-calendar">
+            <div class="cal-tab" id="my-calendar">
                     <p>My Calendar</p>
-                </div>
-            </a>
+            </div>
             <div class="cal-tab" id="others-calendar">
                 <p>Others Calendar</p>
             </div>

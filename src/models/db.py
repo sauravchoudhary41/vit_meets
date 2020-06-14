@@ -34,24 +34,21 @@ class Meetings(db.Model):
     """
     __tablename__ = 'meetings'
     id = db.Column(db.Integer, primary_key=True)
-    created_by = db.Column('created_by', db.String(200))
+    created_by = db.Column('created_by', db.Integer)
     created_at = db.Column('created_at', db.DateTime)
-    start_at = db.Column('start_at', db.DateTime)
-    end_at = db.Column('end_at', db.DateTime)
+    start_at = db.Column('start_at', db.String(50))
     description = db.Column('description', db.String(200))
     booked_by = db.Column('booked_by', db.String(200))
     booked_at = db.Column('booked_at', db.DateTime)
     is_booked = db.Column('is_booked', db.Boolean, default=False)
 
-    def __init__(self, created_by, start_at, end_at, description,
-                 booked_by, booked_at, is_booked):
+    def __init__(self, created_by, start_at, description, booked_by, is_booked):
         self.created_by = created_by
         self.created_at = datetime.now()
         self.start_at = start_at
-        self.end_at = end_at
         self.description = description
         self.booked_by = booked_by
-        self.booked_at = booked_at
+        self.booked_at = datetime.now()
         self.is_booked = is_booked
 
     def __repr__(self):
@@ -69,3 +66,4 @@ engine.execute("USE %s;" % db_name)
 
 db.create_all()
 db.session.commit()
+

@@ -27,7 +27,7 @@ def get_user(user_id):
                     .format(request.url, request.method, request.remote_addr))
 
     try:
-        user = connector.read_user(str(user_id))
+        user = connector.read_user(int(user_id))
         app.logger.info('[Users][Response]: Status Code: 200')
         return make_response(jsonify(user))
     except exceptions.VitMeetsException as e:

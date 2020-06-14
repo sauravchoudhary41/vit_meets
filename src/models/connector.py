@@ -1,3 +1,4 @@
+import sys
 from datetime import datetime
 from sqlalchemy import exc as db_exception
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -120,10 +121,9 @@ def read_meeting(meeting_id):
 def write_meeting(user_id, slot_data):
     """ Write a new meeting to DB """
     start_at = slot_data['start_at']
-    end_at = slot_data['end_at']
 
     try:
-        meeting = Meetings(user_id, start_at, end_at, "", "", "", False)
+        meeting = Meetings(user_id, start_at, "", "", False)
         db.session.add(meeting)
         db.session.commit()
     except db_exception.SQLAlchemyError as e:

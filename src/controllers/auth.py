@@ -22,10 +22,3 @@ def login():
                          '{}'.format(e.code, e.message))
         abort(e.code, {'message': e.message})
 
-
-@app.route('/my_calendar')
-def render_calendar():
-    """ Render calender """
-    app.logger.info('Calendar: [{}]:[{}] from host: [{}]'
-                    .format(request.url, request.method, request.remote_addr))
-    return render_template('my-calendar.html')

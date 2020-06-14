@@ -12,7 +12,7 @@ def get_meetings(user_id):
     app.logger.info('Meetings: [{}]:[{}] from host: [{}]'
                     .format(request.url, request.method, request.remote_addr))
     try:
-        meetings = connector.read_meetings(str(user_id))
+        meetings = connector.read_meetings(int(user_id))
         app.logger.info('[Meetings][Response]: Status Code: 200')
         return make_response(jsonify(meetings))
     except exceptions.VitMeetsException as e:
@@ -30,7 +30,7 @@ def create_meetings(user_id):
 
     try:
         for slot in payload['slots']:
-            connector.write_meeting(str(user_id), slot)
+            connector.write_meeting(int(user_id), slot)
 
         app.logger.info('[Meetings][Response]: Status Code: 201')
         return make_response("", 201)
