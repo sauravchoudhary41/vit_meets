@@ -32,25 +32,21 @@ function sendLogin() {
             document.getElementById("container-main").style.display = "none";
         } else {
             document.getElementById("vt-form-container").style.display = "none";
-            //document.getElementById("container-main-others").style.display = "none";
             document.getElementById("container-main").style.display = "flex";
             document.getElementById("container-main").style.flexDirection = "column";
-            generateCalendar();
         }
         return res.json();
     }).then((res) => {
        if(res.id) {
           sessionStorage.setItem('userid', res.id);
+           generateCalendar();
+
        }
     }).catch((err) => {
         document.getElementById("vt-form-container").style.display = "flex";
         document.getElementById("container-main-others").style.display = "none";
         document.getElementById("container-main").style.display = "none";
     });
-
-    reqLogin.then((resp) => {
-        console.log(resp);
-    })
 }
 
 function sendRegister() {
@@ -130,11 +126,9 @@ function generateCalendar() {
             }
             if (j === 0 && i !== 0) {
                 column.innerText = dayOfMonth;
-                //dayOfMonth++;
             }
             if (i !== 0 && j !== 0) {
                 let currDate = dayOfMonth+"/"+timeSlots[j];
-                //let endDate = moment().add(i - 1, 'days').set({ hour: parseInt(timeSlots[j]), minute: 0, second: 0 }).add(1, 'hours').utc().format();
 		column.setAttribute('data-selected', currDate);
                 column.addEventListener("click", function () {
                     if (this.style.backgroundColor === 'lightgreen') {
@@ -157,12 +151,8 @@ function generateCalendar() {
     }).then((res) => {
         return res.json();
     }).then((res) => {
-console.log(res);
-       // console.log(document.querySelector("[data-selected='"+res.slots[i].start_at+"']"));
 	for(var i =0;i<res.length;i++) {
-console.log(res.length);
- console.log(document.querySelectorAll("[data-selected='"+res[i].start_at+"']")[0]);
-		document.querySelectorAll("[data-selected='"+res[i].start_at+"']").style.backgroundColor = 'lightgreen';
+		document.querySelectorAll("[data-selected='"+res[i].start_at+"']")[0].style.backgroundColor = 'lightgreen';
 	}
     }).catch((err) => {
     });
@@ -218,12 +208,6 @@ function sendAvailabilitySlots() {
     });
 }
 
-function register() {
-    var loginElem = document.getElementById("vt-login-form");
-    loginElem.style.display = "none";
-    var registerElem = document.getElementById("vt-register-form");
-    registerElem.style.display = "flex";
-}
 
 function showOtherCalendar() {
 	document.getElementById("container-main").style.display = "none";
@@ -234,67 +218,3 @@ function showOtherCalendar() {
 
 }
 
-function login() {
-    var registerElem = document.getElementById("vt-register-form");
-    registerElem.style.display = "none";
-    var loginElem = document.getElementById("vt-login-form");
-    loginElem.style.display = "flex";
-}
-
-function sendLogin() {
-    var email = document.getElementById("email").value;
-    var pwd = document.getElementById("password").value;
-    var requestObject = {
-        "email": email,
-        "password": pwd
-    };
-    var reqLogin = fetch(window.location.origin + '/login', {
-        method: "POST",
-        body: JSON.stringify(requestObject),
-        headers: { 
-            "Content-type": "application/json; charset=UTF-8"
-        } 
-    }).then((res) => {
-        if (!res.ok) {
-            document.getElementById("vt-form-container").style.display = "flex";
-            document.getElementById("container-main-others").style.display = "none";
-            document.getElementById("container-main").style.display = "none";
-        } else {
-            document.getElementById("vt-form-container").style.display = "none";
-            document.getElementById("container-main").style.display = "flex";
-            document.getElementById("container-main").style.flexDirection = "column";
-        }
-        return res.json();
-    }).then((res) => {
-       if(res.id) {
-          sessionStorage.setItem('userid', res.id);
-	  generateCalendar();
-       }
-    }).catch((err) => {
-        document.getElementById("vt-form-container").style.display = "flex";
-        document.getElementById("container-main-others").style.display = "none";
-        document.getElementById("container-main").style.display = "none";
-    });
-
-    reqLogin.then((resp) => {
-        
-    })
-}
-
-function sendRegister() {
-    var name = document.getElementById("reg-name").value;
-    var email = document.getElementById("reg-email").value;
-    var pwd = document.getElementById("reg-orig-password").value;
-    var requestObject = {
-        "name": name,
-        "email": email,
-        "password": pwd
-    };
-    fetch(window.location.origin + '/users', {
-        method: "POST",
-        body: JSON.stringify(requestObject),
-        headers: { 
-            "Content-type": "application/json; charset=UTF-8"
-        } 
-    }).then((res) => {
-        if (!res.ok) {
