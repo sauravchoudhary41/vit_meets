@@ -193,32 +193,6 @@ function sendAvailabilitySlots() {
     });
 }
 
-// function getAllUsers () {
-//     let usersList = {
-//         users: [
-//             {
-//                 id: 01,
-//                 name:"Mithilesh",
-//                 email:"mithileshkumar0108@gmail.com"
-//             },
-//             {
-//                 id: 02,
-//                 name:"Sawan",
-//                 email:"kumar.sawan1@gmail.com"
-//             }
-//         ]
-//             }
-//         ]
-                        this.setAttribute('data-checked', currDate);
-                        this.style.backgroundColor = 'lightgreen';
-                    }
-                })
-            }
-            row.appendChild(column);
-        }
-    }
-
-}
 
 function sendAvailabilitySlots() {
     var slots = document.querySelectorAll("[data-checked]");
